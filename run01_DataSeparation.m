@@ -1,5 +1,17 @@
-% get data
 % get motionData
+ftPath   = '../../../m-lib/fieldtrip/';
+rawPath  = '../../data/raw/';
+bidsPath = '../../data/bids/';
+orgPath  = '../../org/';
+funcPath = '../func'; % constum functions
+
+layoutFile = [orgPath, '63equidistant_GreenleeLab_lay.mat'];
+vpcode     = 'sub-S01'; % pilot run
+%eegFile    = [rawPath vpcode, '_GraspMI.vhdr'];
+eegfilebids = './data/bids/sub-S01/eeg/sub-S01_task-Grasping_eeg.vhdr';
+
+
+
 datapath = './data/';
 outpath = './data/cleaned/';
 motionData = readtable(fullfile(datapath, 'S1_Motion.csv'));
