@@ -12,13 +12,13 @@ function [vp, starting_condition, color_mapping, msf_colors, msf_text] = get_exp
    
      switch color_mapping
      case  1
-         msf_colors = {[255 0 0], [0 255 0], [0 0 255]};
+         msf_colors = {[255 0 0], [0 255 0], [51 171 240]}; % use light blue
          msf_text   = {'mouth = red'; 'shoulder = green'; 'forward = blue'};
      case  2
-         msf_colors = {[0 255 0], [0 0 255], [255 0 0]};
+         msf_colors = {[0 255 0], [51 171 240], [255 0 0]};
          msf_text   = {'mouth = green'; 'shoulder = blue'; 'forward = red'};
      case 3
-         msf_colors = {[0 0 255], [255 0 0], [0 255 0]};
+         msf_colors = {[51 171 240], [255 0 0], [0 255 0]};
          msf_text   = {'mouth = blue'; 'shoulder = red'; 'forward = green'};
      end
 

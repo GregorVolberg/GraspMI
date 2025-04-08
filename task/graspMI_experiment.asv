@@ -5,7 +5,7 @@
 function[] = graspMI_experiment()
 
 clear all
-test_run = 0;
+test_run = 1;
 
 %% set up paths, responses, monitor, ...
 addpath('./func'); 
@@ -78,7 +78,7 @@ try
     Priority(1);
     HideCursor;
     [win, MonitorDimension] = Screen('OpenWindow', MonitorSpecs.ScreenNumber, 127); 
-    %Screen('BlendFunction', win, GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    Screen('BlendFunction', win, GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     Screen('TextSize', win, 18);
     if isfield(MonitorSpecs, 'gammaTable')
         Screen('LoadNormalizedGammaTable', win, MonitorSpecs.gammaTable); % correct gamma
@@ -96,8 +96,8 @@ try
                            ISI, frame_s, numBlocks, RepsPerBlock);
     
     % compute fliptimes (subtract half frame)
-    PTBCueTime  = CueTime - (frame_s * 0.7); % 
-    PTBTaskTime = TaskTime - (frame_s * 0.7);  
+    PTBCueTime  = CueTime - (frame_s * 0.5); % 
+    PTBTaskTime = TaskTime - (frame_s * 0.5);  
 
     % Construct and start response queue
     KbQueueCreate([],TastenVector);
@@ -194,7 +194,7 @@ try
         
         % write condition codes and results into matrix
         protocolMatrix(ntrial, :) = [nblock, ntrial, keyCode, rating, responseTime, trialMat(ntrial, 1:3), ...
-                CueStart - TrialStart, TargetStart - CueStart, QuestionStart - TargetStart] 
+                CueStart - TrialStart, TargetStart - CueStart, QuestionStart - TargetStart]; 
         checkESC;
         end % end trial loop
         
@@ -230,7 +230,7 @@ Screen('TextSize', win, textSize);
 DrawFormattedText(win, msgEnd, 'center', 'center', colorWhite);
 VpixxMarkerZero(win);
 Screen('Flip', win);
-KbQueueWait([],[], GetSecs + W);
+KbQueueWait([],[], W);
 
 catch
     Screen('CloseAll');
