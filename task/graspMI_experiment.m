@@ -4,7 +4,7 @@
 % ========================
 function[] = graspMI_experiment()
 
-clear all
+%clear all
 test_run = 0;
 
 %% set up paths, responses, monitor, ...
@@ -19,9 +19,9 @@ MonitorSpecs = getMonitorSpecs(MonitorSelection); % subfunction, gets specificat
 AssertOpenGL;
 Screen('Preference', 'SkipSyncTests', 0); % Sync test will not work with Windows 10
 Screen('Preference', 'TextRenderer', 0); 
-PsychImaging('PrepareConfiguration');
-PsychImaging('AddTask', 'General', 'FloatingPoint32BitIfPossible');
-PsychImaging('FinalizeConfiguration');    
+%PsychImaging('PrepareConfiguration');
+%PsychImaging('AddTask', 'General', 'FloatingPoint32BitIfPossible');
+%PsychImaging('FinalizeConfiguration');    
 
 %% Prepare ViewPixx marker write-out
 topLeftPixel = [0 0 1 1];
@@ -57,10 +57,10 @@ if test_run == 0
  BreakBetweenBlocks = 30; % pause between blocks (s)
  W = inf;          % wait time for kbQueueWait
 elseif test_run == 1
- ISI      = [0.5 1]; 
- CueTime  = 1;
- TaskTime = 1;
- timeOut  = 1;
+ ISI      = [0.2 0.8]; 
+ CueTime  = 0.5;
+ TaskTime = 0.5;
+ timeOut  = 0.5;
  BreakBetweenBlocks = 5;
  W = 1;
 end
@@ -222,7 +222,7 @@ GraspMI.starting_condition = starting_condition;
 GraspMI.monitor_refresh    = hz;
 GraspMI.MonitorDimension   = MonitorDimension;
 
-save([rawdir, outfilename], 'GraspMI');
+msave([rawdir, outfilename], 'GraspMI');
 
 % show ending message
 KbQueueFlush; 
