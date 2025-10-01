@@ -1,0 +1,9 @@
+{
+  "reference_frame": {
+    "Levels": {
+      "global": {
+        "SpatialAxes": "ALS"
+      }
+    }
+  }
+}

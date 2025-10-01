@@ -1,6 +1,0 @@
-- Screen priotity 1 einstellen
-- test machen: timing-genauigkeit? teils 4 frames daneben!
-- cap size mit abfragen in stimulation
-- mismatch marker: 234 in protocol (korrekt), 238 in EEG
-- hat Proband geantwortet auf der Tastatur? Es waren keine Reaktionen aufgezeichnet
-
