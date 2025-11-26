@@ -34,3 +34,67 @@ S15, excessive eye movements and blinks, not well removed from EEG data after IC
 S16, noisy
 S18, slow drifts, otherwise OK
 S23, slow drifts, otherwise fine
+
+### Main analysis
+Main analysis focusses on beta band activity and CSP patterns. Previous studies used
+15-25 Hz, sensor level: Turella 2016
+0.3 - 4 Hz, sensors, Hooks 2023 (reach-to-grasp)
+mu (8-12) and beta (13-30), Abbasi 2026
+mu 8-14, beta around 20, Blankertz 2008
+
+Previous studies revealed beta band modulations during hand movement planning and execution (Turella), see also Zaepffel 2013. Beta and mu decrease during planning and movement (but increase after cue).
+
+To identify suitable frequency ranges for the main analysis, a time-frequency-decompition was performed on all trials in real movement conditions. The data showed clear power decreases in the movement execution phase in two distinct frequency bands, mu (11-14 Hz) and beta (20-30 Hz). Both were prominent at central and fronto-central electrodes. Topografies show the mean mu and beta power between 0 and 3 s after cue onset.
+
+Run this part of the analysis with 
+- *./run02_FOI_plot.m* .
+
+
+![TFR](./md_images/Overall_power_FOI.png)
+![topo_mu](./md_images/Power_FOI_mu_topo.png)
+![topo_beta](./md_images/Power_FOI_beta_topo.png)
+
+## Results
+
+All decoding was performed on CSPs that were derived from EEG data that was pre-filetered in the mu and beta frequency ranges. For classification, a linear discriminant analysis was used (LDA, 5-fold cross-validation, 100 repetitions) .
+
+### Decoding real movements
+
+Real movement conditions were subjected to pairwise decoding (i. e.: mouth vs. shoulder, mouth vs. forward, forward vs. shoulder). A sliding window of 0.3 s was used on each 0.01 s bin from -0.8 to 3 s. Result
+In both mu and beta frequencies, only for the mouth v. forward condition the decoding accuracy was above chance (mu: 0.33 - 3s, p < .00? as revealed by permutation test, maximum accuracy at 1.66s; beta: ?? - ??s, p < .0?, maximum accuracy 2.23 ).
+
+Run this part of the analysis with 
+- *./run03_decoding.m* and
+- *./run04_decoding_plot.m*.
+
+![decode_real_mu](./md_images/decoding_accuracy_real.png)
+
+### Cross-decoding
+
+Classifiers that were trained on real movements were used for used for classifying imagined movements (3 by 3). A sliding window of 0.3s was used on every 0.02s bin between -0.8 and 3s. For multiple comparison correction, the number of adjacent significant bins were used for a permutation distribution. Color sclae is from .45 to .55.
+None of the results survided the correction for multiple comparisons.
+
+Run this part of the analysis with 
+- *./run05_cross_decoding.m* and
+- *./run06_cross_decoding_plot.m*.
+
+![decode_real_mu](./md_images/Cross_decoding_accuracy_mu.png)
+![decode_real_beta](./md_images/Cross_decoding_accuracy_beta.png)
+
+### Correlation with imagery rating
+
+In a next set of analyses, it was tested whether (and when) the decoding accuracy for imagined movements correlated with the imagery rating that was obtained after each trial. Classifiers were trained on real-movment data, within the time ranges where they showed the highest classification accuracy (mu: 1.66s, beta: 2.23s). For beta frequencies, there was a later peak in accuracy, but this was considered too close to the edge of the time window of interest.
+
+Sliding windows were adjusted in size so that they contained 7 cycles of the target frequency, 0.56s for mu and 0.28s for beta. There were no significant findings.
+
+Run this part of the analysis with 
+- *./run07_cross_decoding_corr.m* and
+- *./run08_cross_decoding_corr_plot.m*.
+
+![cross_corr](./md_images/cross_decoding_corr.png)
+
+
+
+
+
+

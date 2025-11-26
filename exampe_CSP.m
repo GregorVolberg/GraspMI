@@ -1,5 +1,6 @@
 % example from https://github.com/treder/MVPA-Light/blob/master/examples/understanding_spatial_filters.m#L603-630
 % example CSP
+ftPath   = '../../m-lib/fieldtrip/';
 mvpath   = '../../m-lib/MVPA-Light/startup';
 addpath(ftPath); ft_defaults;
 addpath(mvpath); startup_MVPA_Light;
@@ -95,5 +96,24 @@ cfg.feature_dimension = [pparam.feature_dimension, pparam.target_dimension];
 cfg.flatten_features  = 0;  % make sure the feature dimensions do not get flattened
 
 [perf, result] = mv_classify(cfg, X_signal, clabel_sim_csp);
+
+
+% von hier ab Gregor
+zparam = mv_get_preprocess_param('zscore');
+[~, Xz_signal, ~] = mv_preprocess_zscore(zparam, X_signal, clabel_sim_csp);
+
+cfg = [];
+cfg.classifier          = 'lda';
+cfg.k                   = 5;
+cfg.repeat              = 5;
+cfg.preprocess          = 'csp';
+cfg.preprocess_param    = pparam;
+cfg.feature_dimension   = [pparam.feature_dimension, pparam.target_dimension];
+cfg.flatten_features    = 0;  % make sure the feature dimensions do not get flattened
+
+[perf, result] = mv_classify(cfg, X_signal, clabel_sim_csp);
+%geht!
+[perf, result] = mv_classify(cfg, X_signal, clabel_sim_csp, ...
+                            X_signal, clabel_sim_csp(randperm(numel(clabel_sim_csp))));
 
 
