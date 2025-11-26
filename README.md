@@ -67,7 +67,7 @@ Run this part of the analysis with
 - *./run03_decoding.m* and
 - *./run04_decoding_plot.m*.
 
-![decode_real_mu](./md_images/decoding_accuracy_real.png)
+![decode_real_mu](./md_images/Decoding_accuracy_real.png)
 
 ### Cross-decoding
 
