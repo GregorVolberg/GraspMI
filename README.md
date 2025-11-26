@@ -78,8 +78,8 @@ Run this part of the analysis with
 - *./run05_cross_decoding.m* and
 - *./run06_cross_decoding_plot.m*.
 
-![decode_real_mu](./md_images/Cross_decoding_accuracy_mu.png)
-![decode_real_beta](./md_images/Cross_decoding_accuracy_beta.png)
+![decode_real_mu](./md_images/Cross_classification_accuracy_auc_clustert_mu.png)
+![decode_real_beta](./md_images/Cross_classification_accuracy_auc_clustert_beta.png)
 
 ### Correlation with imagery rating
 
